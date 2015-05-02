@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width initial-scale=1.0" name="viewport">
+	<title></title>
+	<link href="/css/foundation.css" rel="stylesheet">
+	<link href="css/normalize.css" rel="stylesheet">
+	<script src="js/vendor/modernizr.js"></script>
+	<script type="text/javascript">
+		 $(function(){
+ 	 		$('saveForm').click(function(){
+  				var parametres = { name: $(this).val(),
+  								   description: $(this).val()};
+  //      				//$.get( '/next',parameters, function(data) {
+   				$.get('/next',parametres, function() {	
+  						
+  //    				});
+ 	 			});
+		    });
+ 	 	});
+		//<form data-abide="" name="project" id="project" method="POST" action="/next">
+	</script>
+</head>
+<body>
+	<form data-abide="" name="project" id="project">
+		<hr></hr>
+			<div class="row">	
+				<div class="large-12 columns">
+					<h1>Create New Evaluation Project</h1>
+				</div>
+			</div>
+		<hr></hr>
+			<div class="row">
+				<div class="large-5 columns name-field">
+					<label class="name"> 1.Product or service name:
+					<small>(required)</small>
+					</label>
+					<input type="text" required="required" pattern="[a-zA-Z]+" size="8" maxlength="40" value="" tabindex="1" name="name", id="name"></input>
+					<small class="error" id="nameError">Name is required</small>		
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-12 columns">
+					<label>2.Description:</label>
+					<textarea rows="10" cols="50" tabindex="2" name="description" id="description"></textarea>
+					<br></br>	
+				</div>
+			</div>
+			<div class="row">
+				<div class="large-4 columns">
+					<input class="button round" type="submit" value='Create Evaluation Project' name='saveForm' id="saveForm">
+				</div>
+			</div>
+	</form>	
+</body>
+<script src="/js/vendor/jquery.js"></script>
+<script src="/js/vendor/foundation.min.js"></script>
+<script>
+	 $(document).foundation();		//inicializacion de foundation
+</script>
+</html>  

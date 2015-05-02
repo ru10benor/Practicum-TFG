@@ -1,0 +1,66 @@
+doctype 
+html(lang="en")
+  head
+    meta(charset='utf-8')
+    meta(content='width=device-width,initial-scale=1.0',name='viewport')
+    title(id='title')=title
+    link(href='/css/foundation2.css',rel='stylesheet')    
+    script(src='js/vendor/modernizr.js') 
+  body
+      hr
+      div
+        div.large-6.columns
+          h1 ICT-Acc
+        div.large-6.columns
+          h1=h3
+        
+      hr  
+      div.columns
+        div.medium-5.large-5.columns
+
+          label Question:
+          textarea(rows='6',cols='50',tabindex='-1',name='question', id='question',disabled='disabled')=currentQuestion
+
+          dl.accordion(data-accordion='')
+            dd.accordion-navigation
+              a.button.round(href='#panel1',tabindex='1') Help
+              textarea.content(id='panel1')=help
+          br
+          
+          label Answer:
+          div.switch.large
+            input(href='#yes',type='radio',checked,name='answer',value='Yes',id='Yes')
+            label(for='Yes') &nbsp;&nbsp;Yes
+      
+            input(href='#no',type='radio',name='answer',value='No',id='No')       
+            label(for='No') &nbsp;&nbsp;No
+          br
+
+          input.button.round(href='#',type='submit',tabindex='2',value='Next question',name='nextQuestion',id='nextQuestion')
+        div.medium-6.large-6.columns
+          
+          label Provided answers:
+          textarea(rows='6',cols='50',tabindex='-1',id='providedAnswer',name='providedAnswer',disabled='disabled')
+
+          label Applicable clauses:
+          textarea(rows='6',cols='50',tabindex='-1',name='appliClauses', id='appliClauses',disabled='disabled')=clauses
+
+    script(src='/js/vendor/jquery.js')
+    script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js")
+    script(src='/js/foundation/foundation.js')
+    script(src='/js/vendor/foundation.min.js')
+    script(src='/js/page2.js')
+    script(src='/js/foundation/foundation.accordion.js')
+    script
+      $(document).foundation();//inicializacion de foundation
+
+//-textarea(rows='14',cols='50',tabindex='-1',name='appliClauses', id='appliClauses',value='appliClauses',disabled='disabled')=clauses
+
+//-br
+//-br
+//-br
+//-br
+//-br
+//-br form(data-abide, name='project',id='project',method='POST',action='/next') 
+//-br
+//-br

@@ -1,0 +1,36 @@
+doctype 
+html(lang="en")
+  head
+    meta(charset='utf-8')
+    meta(content='width=device-width,initial-scale=1.0',name='viewport')
+    title=title
+    link(href='/css/foundation.css',rel='stylesheet')
+    link(href='css/normalize.css',rel='stylesheet')    
+    script(src='js/vendor/modernizr.js')
+  body
+    form(data-abide, name="project",id="project",method="POST",action="/")      
+      hr
+      div.row
+        div.large-12.columns
+          h1 Create New Evaluation Project 
+      hr  
+      div.row
+        div.large-4.columns.name-field     
+          label.name 1.Product or service name:
+            small &nbsp;required
+          input(type="text",required="required",pattern="[a-zA-Z]+",size="8",maxlength="40",value="",tabindex="1",name="name", id="name")
+          small.error(id="nameError") Name is required
+      div.row
+        div.large-12.columns
+          label 2.Description:   
+          textarea(rows="10",cols="50",tabindex="2",name="description", id="description")
+          br		  
+      div.row
+        div.large-4.columns       
+          input.button.round(type='submit',href='#',name='saveForm',value="Create Evaluation Project",id='saveForm')    
+      script(src='/js/vendor/jquery.js')
+      script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js")
+      script(src='/js/vendor/foundation.min.js')
+      script
+        $(document).foundation();//inicializacion de foundation
+

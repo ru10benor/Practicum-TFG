@@ -1,0 +1,36 @@
+doctype 
+html(lang="en")
+  head
+    meta(charset='utf-8')
+    meta(content='width=device-width,initial-scale=1.0',name='viewport')
+    title(id='title')=title
+    link(href='/css/foundation2.css',rel='stylesheet')    
+    script(src='js/vendor/modernizr.js') 
+  body
+      hr
+      div
+        div.large-3.columns
+          h1 ICT-AccE
+        div.large-6.columns
+          h2 EN 301 549. Decision tree results
+        div.large-2.columns      
+      hr  
+      div.columns
+        div.medium-5.large-5.columns
+ 
+          label Answers to questions:
+          select(id='ansToQuest',name='ansToQuest',disabled='disabled',size='11')
+            option(value='0') initial Value
+
+          label Applicable clauses:
+          select(id='appliClaus',name='appliClaus',disabled='disabled',size='11')
+            option(value='0') initial Value
+
+    script(src='/js/vendor/jquery.js')
+    script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js")
+    script(src='/js/foundation/foundation.js')
+    script(src='/js/vendor/foundation.min.js')
+    script(src='/js/page2.js')
+    script(src='/js/foundation/foundation.accordion.js')
+    script
+      $(document).foundation();//inicializacion de foundation
