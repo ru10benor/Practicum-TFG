@@ -1,11 +1,7 @@
 //MODULOS
 var express = require('express'),
     ipfilter = require('ipfilter'),//
-    //http = require('http'),//
-    // mongooe= require('mongoose');//bbdd 
     mysql= require('mysql');
-    //modelos=require('./models');
-
     var path = require('path');
     var favicon = require('serve-favicon');
     var logger = require('morgan');
@@ -86,7 +82,6 @@ function toStringClauses(clauses){
   return clauses;
 }
 
-
 //variables globales
 var actualQuest='Q01';
 var myClauses = new Array();
@@ -101,37 +96,51 @@ var idAns=1;
 var myHistoric = new Array(); //Array providedAns
 var myQuestion;
 
-
+/*--------------------Query functions--------------------*/
+//This function inserts a project
 insertProject = function(idProj, name, description,callback) {
     client.query('INSERT INTO projects(id,name,description) VALUES(?,?,?)',[idProj,name,description],function(err,results,fields){
         callback(err, results);
     });
 };
+//This function inserts the answer to a question
 insertAnswers = function(idAns, idQuest, idProj, answer,callback) {
   client.query('INSERT INTO answers(id,idQuest,idProj,answer) VALUES(?,?,?,?)',[idAns,actualQuest,idProj,answer],function(err,results,fields){
         callback(err, results);
     });
 };
+//This function gets the text of a question
 getQuestion = function(actualQuest, callback) {
     client.query('SELECT text FROM questions WHERE id='+'"'+actualQuest+'"',function(err,results,fields){ 
         callback(err, results);
     });
 };
+//This function gets the help of a question
 getHelp = function(actualQuest, callback) {
     client.query('SELECT help FROM questions WHERE id='+'"'+actualQuest+'"',function(err,results,fields){
         callback(err, results);
     });
-}; 
+};
+//This function gets the id of the next question according to the answer to the current question 
 getQuestionAns = function(nextAns,actualQuest, callback) {
     client.query('SELECT '+nextAns+' FROM questions WHERE id='+'"'+actualQuest+'"',function(err,results,fields){ 
         callback(err, results);
     });
 };
-//load home
+//This function gets the id and the title of the clauses always apply
+getClauses = function(callback) {
+    client.query('SELECT id, tittle FROM clauses WHERE id="05.2" or id="05.3" or id="05.4" or id="05.7" or id="05.8" or id="05.9"',function(err,results,fields){
+      callback(err, results);
+    });
+};
+/*--------------------Query functions--------------------*/
+
+//load page1
 app.get('/', function(req, res){
   res.render('page1', {title: 'MyApp'});
 });
 
+//load page2
 app.post('/',function(req,res){
   var name=req.body.name;
   nameProj=name;
@@ -154,19 +163,15 @@ app.post('/',function(req,res){
     myHelp=toStringQuest(myHelp);
     //console.log('LA PREGUNTA ES: '+myHelp);
   });
-
-  client.query('SELECT id, tittle FROM clauses WHERE id="05.2" or id="05.3" or id="05.4" or id="05.7" or id="05.8" or id="05.9"',function(err,results,fields){
-    if(err){
-      throw err;
-    }
-    //Array de strings con results var myClauses = new Array();
+  
+  getClauses(function(err, results){
     for (var i = 0; i < results.length; i++) {
       myClauses[i] = JSON.stringify(results[i]);
       myClauses[i]= toStringClauses(myClauses[i]); //Poner clauses formato adecuado
     };
     render=[tittleApp,name,myQuestion,myHelp,myClauses];
     res.render('page2', {title:render[0],h3:'Evaluation Project: '+render[1],currentQuestion:render[2],help:render[3],clauses:render[4].join('\n')});
-    });   
+  });  
 });
 
 app.post('/next',function(req,res){
@@ -208,7 +213,6 @@ app.post('/next',function(req,res){
         res.redirect('/results');   
       }
     });  
-
    }else{ //el usuario responde si y si no responde se considera si
     answer='Yes';
 
