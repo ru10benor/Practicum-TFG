@@ -268,7 +268,7 @@ app.post('/next',function(req,res){
 
 //load results
 app.get('/results', function(req, res){
-  res.render('page3', {title: 'MyApp'});
+  res.render('page3');
 });
 
 // catch 404 and forward to error handler

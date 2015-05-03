@@ -13,7 +13,7 @@ $(function(){
          	  $('#providedAnswer').html(data[3].join('\n'));
           }else{
             $('#labelQuestion').text('Message:');
-            $('#question').html(data);
+            $('#question').html(data); 
             $('#showResults').show(); //mostrar boton de resultados
             $('#nextQuestion').hide(); //ocultar boton nextquestion
             $('#panel2').hide(); //ocultar boton de ayuda
@@ -23,6 +23,8 @@ $(function(){
         });
   });
   $('#showResults').click(function(){
-      $.get('/results');
+    $.get('/results',function(data){ 
+      $('#body').html(data);
+    });
   });
 });
