@@ -209,8 +209,8 @@ app.post('/next',function(req,res){
           });
         });
       }else{
-        //res.send('F');
-        res.redirect('/results');   
+        res.send('You have completed the evaluation');
+        //res.redirect('/results');   
       }
     });  
    }else{ //el usuario responde si y si no responde se considera si
@@ -259,17 +259,17 @@ app.post('/next',function(req,res){
           });
         });
       }else{
-        //res.send('F');
-        res.redirect('/results');   
+        res.send('You have completed the evaluation');
+        //res.redirect('/results');   
       }
     });  
    }  
 });
 
 //load results
-  app.get('/results', function(req, res){
-    res.render('page3', {title: 'MyApp'});
-  });
+app.get('/results', function(req, res){
+  res.render('page3', {title: 'MyApp'});
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

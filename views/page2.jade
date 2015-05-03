@@ -18,17 +18,17 @@ html(lang="en")
       div.columns
         div.medium-5.large-5.columns
 
-          label Question:
+          label(id='labelQuestion') Question:
           textarea(rows='6',cols='50',tabindex='-1',name='question', id='question',disabled='disabled')=currentQuestion
 
           dl.accordion(data-accordion='')
             dd.accordion-navigation
-              a.button.round(href='#panel1',tabindex='1') Help
+              a.button.round(href='#panel1',id='panel2',tabindex='1') Help
               textarea.content(id='panel1')=help
           br
           
-          label Answer:
-          div.switch.large
+          label(id='labelAnswer') Answer:
+          div.switch.large(id='switch')
             input(href='#yes',type='radio',checked,name='answer',value='Yes',id='Yes')
             label(for='Yes') &nbsp;&nbsp;Yes
       
@@ -37,6 +37,7 @@ html(lang="en")
           br
 
           input.button.round(href='#',type='submit',tabindex='2',value='Next question',name='nextQuestion',id='nextQuestion')
+          input.button.round(href='#',type='submit',tabindex='2',value='Show results',name='showResults',id='showResults', style='display: none;')
         div.medium-6.large-6.columns
           
           label Provided answers:
