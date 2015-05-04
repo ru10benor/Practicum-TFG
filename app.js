@@ -18,7 +18,7 @@ var client=mysql.createConnection({
   host: 'localhost',
   port: '3306', //07 xampp y 06 mysql
 });
-
+//
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
